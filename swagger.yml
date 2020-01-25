@@ -1,0 +1,130 @@
+swagger: "2.0"
+info:
+  description: swagger api description
+  version: "1.0.0"
+  title: Rest API for UFC Rankings
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /fighter/all/{full_name}:
+    get:
+      operationId: fighters.read_all
+      tags:
+        - fighter
+      summary: Returns all fighters rankings
+      description: Returns all fighters rankings in a list
+      parameters:
+        - name: full_name
+          in: path
+          description: full name of a fighter
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read person from people list operation
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                wclass:
+                  type: string
+                rank:
+                  type: string
+                date:
+                  type: string
+
+  /fighter/last/{full_name}:
+    get:
+      operationId: fighters.read_last
+      tags:
+        - fighter
+      summary: Returns last ranking of a fighter
+      description: Returns a fighter's last ranking
+      parameters:
+        - name: full_name
+          in: path
+          description: full name of a fighter
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read person's last rankings
+          schema:
+              properties:
+                full_name:
+                  type: string
+                wclass:
+                  type: string
+                rank:
+                  type: string
+                date:
+                  type: string
+
+  /fighter/first/{full_name}:
+    get:
+      operationId: fighters.read_first
+      tags:
+        - fighter
+      summary: Returns first ranking of a fighter
+      description: Returns a fighter's first ranking
+      parameters:
+        - name: full_name
+          in: path
+          description: full name of a fighter
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read person's first rankings
+          schema:
+              properties:
+                full_name:
+                  type: string
+                wclass:
+                  type: string
+                rank:
+                  type: string
+                date:
+                  type: string
+
+  /wclass/{weight}/{date}:
+    get:
+      operationId: weightclass.weightclass_at_date
+      tags:
+        - weight class
+      summary: Returns rankings table of a weight class at the date
+      description: Returns rankings table of a weight class
+      parameters:
+        - name: weight
+          in: path
+          description: a weight class you want to get
+          type: string
+          required: True
+        - name: date
+          in: path
+          description: date
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfuly returned fighters list
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                wclass:
+                  type: string
+                rank:
+                  type: string
