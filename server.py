@@ -1,6 +1,5 @@
-from flask import render_template
+from flask import render_template, redirect
 import config
-
 
 # Get the application instance
 connex_app = config.connex_app
@@ -17,7 +16,7 @@ def home():
     localhost:5000/
     :return:        the rendered template "home.html"
     """
-    return render_template("home.html")
+    return redirect("/api/ui/",code=302)
 
 
 if __name__ == "__main__":
